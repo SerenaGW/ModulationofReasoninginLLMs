@@ -1,6 +1,8 @@
 # Expanding the Research:
 # The Modulation of LLM Reasoning through Heuristic Shortcuts.
 
+> **Data note (October 2026):** The published dataset contains 850 runs rather than 840 (Model 3 has 40 riddle runs instead of 30), so some reported degrees of freedom differ slightly from the data. The ANOVA results on response times are reproducible from the published CSV files.
+
 ## Introduction: An Analysis of Optimized Fragility
 
 Building on the findings from my previous report on the effect of symbolic language on LLM reasoning, a broader research initiative has emerged. The first phase demonstrated that introducing an in-context learning (ICL) guide can modulate a model's behavior, making it faster but also more prone to errors. In that research, when presented with a fundamental variation in a riddle, the model consistently defaulted to the original solution, ignoring the new details. This behavior is notably similar to the *A-not-B phenomenon described in research by Han et al. (2024), where models adhere to a pre-existing pattern from examples, even when circumstances render it invalid.
