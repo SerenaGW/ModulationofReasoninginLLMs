@@ -1,5 +1,7 @@
  # Expanding the Research: The Modulation of LLM Reasoning through Heuristic Shortcuts
 
+ > **Review note (October 2026):** This summary uses stronger language than the evidence supports. Phrases such as "validating the hypothesis" or "any ICL guide fundamentally modifies" should be read as observations on one model (gpt-oss-20b) with a small set of questions. See the main README for the results, limitations and what has been statistically tested.
+
 ## Project Overview
 
 This repository presents the second phase of an ongoing research initiative into the fundamental impact of in-context learning (ICL) on the internal logic of Large Language Models (LLMs). Building on the concept of **Optimized Fragility**, this study investigates whether different types of ICL guides, beyond just a symbolic language, induce a fundamental shift in the model's reasoning strategy. The findings reveal that ICL acts as a **catalyst for heuristic shortcuts**, transforming the model's behavior from a state of **"chaotic resilience"** to a more efficient but brittle state of "optimized fragility." This research highlights a critical vulnerability and a new perspective on LLM security and evaluation.
