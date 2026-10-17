@@ -1,33 +1,70 @@
-# The Modulation of Reasoning in LLMs
+# ICL Optimized Fragility: How In-Context Learning Guides Change an LLM's Behavior
 
-This portfolio addresses a fundamental question: Can an In-Context Learning (ICL) guide change the way a Large Language Model reasons?
+Two experiments on whether in-context learning (ICL) guides, a few examples placed in a model's context, change how an open-source model (gpt-oss-20b) answers questions, including questions unrelated to the guide.
 
-This research explores an innovative finding about LLMs: ICL guides are not just passive examples, but **heuristic shortcuts** that alter the models' internal logic.
+The second study is published as a preprint on arXiv: [ICL Optimized Fragility (arXiv:2510.00300)](https://arxiv.org/abs/2510.00300).
 
----
-
-## Research Reports
-
-### 1. **[When In-Context Learning Affects a Model's Mathematical Logic](./Report1)**
-
-* **Summary:** This initial study reveals **"Optimized Fragility,"** a phenomenon in which a minimal ICL guide, using symbolic language, induces a gain in a model's speed at the expense of its reasoning flexibility. The report documents a **"Transfer of Processing Methodology"** where logic trained in one domain transfers to another, causing failures in mathematical logic that the base model could solve.
-* **Key Concepts:** Transfer of Processing Methodology, Optimized Fragility, Mathematical Logic, Symbolic Language.
-* **Key Findings:**
-    * Data shows a **significant improvement** in the model's speed and consistency.
-    * The model acquired a new processing logic that made it more efficient but also more rigid.
-    * The model consistently failed on problems with subtle variations that the base model could solve, demonstrating a **collapse by specialization**.
-
-### 2. **[Expanding the Research: The Modulation of LLM Reasoning through Heuristic Shortcuts](./Report2)**
-
-* **Summary:** This second phase of research validates the hypothesis that "optimized fragility" is an inherent behavior of LLMs. The report shows that different types of ICL guides (such as CoT, Simple, Random) act as **"heuristic shortcuts"** that transform the **"chaotic resilience"** of the base model into a more efficient yet vulnerable behavior. The results demonstrate that, while guided models are faster and more consistent in general knowledge tasks, they sacrifice their versatility and resilience in complex reasoning problems.
-* **Key Concepts:** Heuristic Shortcuts, Optimized Fragility, Chaotic Resilience, Modulation of Reasoning.
-* **Key Findings:**
-    * Evidence confirms that **any ICL guide, not just symbolic language, induces fundamental changes** in a model's reasoning.
-    * The results indicate that ICL can generate **"optimized fragility"** by making models efficient on simple tasks but prone to failure on tasks that require complex reasoning.
-    * The original model, with its **"chaotic resilience,"** was more effective at solving riddles and geometry problems than most of the optimized models.
+> **Scope:** both studies use a single model (gpt-oss-20b), a small set of questions and prompts in Spanish. The results describe this setup and should be tested on other models before generalizing.
 
 ---
 
-## Reproducibility
+## Key terms
 
-This portfolio is committed to open science. Each report includes a dedicated folder with all raw data, `modelfile` configurations, and model logs, inviting the community to replicate and verify the findings.
+- **Optimized fragility:** the pattern I observed where a model with an ICL guide answers faster and more consistently, but less accurately on problems with subtle variations.
+- **Chaotic resilience:** the base model's slower, more variable behavior, which in these tests solved some of those problems more often.
+
+---
+
+## Study 1: A symbolic-language guide ([Report1](./Report1))
+
+**Setup:** the base model vs. the same model with a 15-example ICL guide written in a symbolic language. Three logic riddles with subtle variations (from Williams et al., 2024), 50 runs each per model, plus a Math Olympiad problem (10 runs each).
+
+**Results (reproducible from [the data](./Report1/DATASET1)):**
+
+| | Base model | Model with ICL guide |
+| --- | --- | --- |
+| Correct answers on riddles | 87 / 150 (58%) | 25 / 150 (17%) |
+| Mean response time on riddles | 89 s | 36 s |
+
+- The accuracy difference is statistically significant (Fisher's exact test, p < 0.001) and appears in each of the three riddles separately.
+- The model with the guide was also significantly faster (Mann-Whitney U test, p < 0.001).
+- In other words: the guide, which had nothing to do with the riddles, made the model faster but much less accurate on them.
+
+## Study 2: Comparing five types of ICL guides ([Report2](./Report2))
+
+**Setup:** six configurations of the same model: base, and guides of five types (simple, chain-of-thought, random, appended noise text, symbolic language). Each was tested on 10 general-knowledge questions, the same 3 riddles and 1 Olympiad problem, with 10 runs per question.
+
+**Results:**
+
+- **Response times** differed significantly between configurations on general questions and riddles (one-way ANOVA, p < 0.001), but not on the Olympiad problem (p = 0.22). These results are reproducible from the published data.
+- **Accuracy:** on general questions, the guided models scored 91–99% vs. 88% for the base model. On riddles, most guided models dropped to 10–30%, while the base model and the chain-of-thought model reached 43%. These accuracy figures come from my manual grading and have not yet been tested statistically.
+
+---
+
+## Limitations
+
+- One model only, and all prompts in Spanish.
+- Few distinct questions (3 riddles, 1 Olympiad problem): repeated runs measure the model's variability, not whether the effect holds for other problems.
+- Answers were graded by one person (me), without a second reviewer.
+- Response times depend on hardware and answer length.
+- In Study 2, the manual grades are not yet included in the dataset, so the accuracy results cannot be verified by others.
+
+## Next steps
+
+- Add the manual grades to the Study 2 dataset and test the accuracy differences statistically.
+- Repeat the experiment with more riddles and with other models.
+
+---
+
+## Repository contents
+
+- `Report1/`: first study (report, ICL guide in the Modelfile, results CSVs, and excerpts of the model's reasoning).
+- `Report2/`: second study (report, the five Modelfiles, and results CSVs per model and test).
+
+All raw data and configurations are public so the results can be checked and replicated.
+
+## Reference
+
+Gomez Wannaz, S. (2025). *ICL Optimized Fragility.* arXiv preprint [arXiv:2510.00300](https://arxiv.org/abs/2510.00300).
+
+Riddles adapted from: Williams, S., Huckle, J., et al. (2024). *Easy Problems That LLMs Get Wrong.* arXiv.
