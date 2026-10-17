@@ -47,7 +47,7 @@ The experiments revealed a consistent and significant difference in the models' 
 
 ## Reproducibility and Raw Data
 
-I am firmly convinced that Artificial Intelligence security is a shared responsibility. The complete raw data, examples of the models' `Thinking...` logs, and the modelfiles used for configurations will be made available in this repository. I invite other researchers and developers to replicate my experiment, analyze my data, and contribute their own findings. My goal is to collectively build a deeper understanding of these complex behaviors.
+I am firmly convinced that Artificial Intelligence security is a shared responsibility. The complete raw data, examples of the models' `Thinking...` logs, and the modelfiles used for each configuration are available in the [DATASET2](./DATASET2) folder.
 
 ---
 
