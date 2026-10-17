@@ -157,7 +157,7 @@ This research has revealed many facets of how a model's internal processing work
 
 I am firmly convinced that Artificial Intelligence security is a shared responsibility. The complete raw data, examples of the models' **Thinking...** logs, the modelfile used for configurations, will be made available in this repository.
 
-[DATASET](https://github.com/SerenaGW/LLMLanguageFineTuningModifiesMathLogic/tree/main/DATASET)
+[[DATASET](./DATASET1)
 
 I invite other researchers and developers to replicate my experiment, analyze my data, and contribute their own findings. My goal is to collectively build a deeper understanding of these complex behaviors.
 
